@@ -1,11 +1,12 @@
 {
   "name": "rollup-plugin-nunjucks",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "module": "dist/index.es.js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "rollup -c"
   },
   "keywords": [],
   "author": "",
