@@ -1,15 +1,16 @@
 {
-  "name": "rollup-plugin-nunjucks",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@amprew/rollup-plugin-nunjucks",
+  "version": "0.0.1",
+  "description": "[Nunjucks](https://github.com/mozilla/nunjucks#readme) is a templating library by [Mozilla](https://www.mozilla.org/). This Rollup plugin integrates these great features into an easy interface without having to set up all of your templates.",
   "module": "dist/index.es.js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "rollup -c"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "me@andrewww.co.uk",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
@@ -30,5 +31,17 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amprew/rollup-plugin-nunjucks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amprew/rollup-plugin-nunjucks/issues"
+  },
+  "homepage": "https://github.com/amprew/rollup-plugin-nunjucks#readme"
 }

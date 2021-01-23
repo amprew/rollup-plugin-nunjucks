@@ -2,14 +2,20 @@
 
 [Nunjucks](https://github.com/mozilla/nunjucks#readme) is a templating library by [Mozilla](https://www.mozilla.org/). This Rollup plugin integrates these great features into an easy interface without having to set up all of your templates.
 
-### How to use
+## Install
+
+```sh
+npm install --save-dev @amprew/rollup-plugin-nunjucks
+```
+
+## How to use
 
 To use this plugin we specify an input and output file for our template and pass it into the plugin section:
 
 #### Example #1
 
 ```js
-import NunjucksPlugin from 'rollup-nunjucks-plugin';
+import NunjucksPlugin from '@amprew/rollup-plugin-nunjucks';
 
 {
   ...,
@@ -21,9 +27,42 @@ import NunjucksPlugin from 'rollup-nunjucks-plugin';
       vars: {
         ENVIRONMENT: 'production',
         some_other_view_variable: 'some value'
-      }
+      },
+      opts: {}
     })
   ]
 ```
 
-(file paths can be either relative or absolute.)
+## Options
+
+### `input` (\*required\*)
+
+Type: `string`
+
+Default: `none`
+
+Note: This `input` option is a path to the input nunjucks file. This path can either be an absolute or relative.
+
+### `output` (\*required\*)
+
+Type: `string`
+
+Default: `none`
+
+Note: This `output` option is a path to the output nunjucks file. This path can either be an absolute or relative.
+
+### `vars` (\*optional\*)
+
+Type: `Object` `{[key: string]: any}`
+
+Default: `{}`
+
+Note: This `vars` option is where you can specify any variable that gets passed to your template.
+
+### `opts` (\*optional\*)
+
+Type: `Object` `{[key: string]: any}`
+
+Default: `{}`
+
+Note: This `opts` option is to be used for configuring different arguments which get passed to Nunjuck's `configure` function https://mozilla.github.io/nunjucks/api.html#configure.
