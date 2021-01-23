@@ -7,5 +7,6 @@ export default {
     { file: pkg.main, format: 'cjs', exports: 'named' },
     { file: pkg.module, format: 'esm' }
   ],
-  plugins: [babel()]
+  plugins: [babel({ babelHelpers: 'bundled' })],
+  external: ['nunjucks', 'path', 'fs']
 };
