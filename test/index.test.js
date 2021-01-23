@@ -1,4 +1,5 @@
-import fs from 'fs-extra';
+import fs from 'fs';
+import fsExtra from 'fs-extra';
 import nunjucks from 'nunjucks';
 import { rollup } from 'rollup';
 import NunjucksPlugin from '../src/index';
@@ -25,7 +26,7 @@ async function build(pluginConfig) {
   await bundle.close();
 
   const outPath = pluginConfig.output;
-  const templateFileContents = await fs.readFile(outPath, 'utf-8');
+  const templateFileContents = await fs.promises.readFile(outPath, 'utf-8');
 
   return {
     meta,
@@ -34,12 +35,10 @@ async function build(pluginConfig) {
   };
 }
 
-beforeEach(async () => {
-  await fs.remove('./dist');
-});
-
 afterEach(async () => {
-  await fs.remove('./dist');
+  if (!fs.existsSync('./dist')) return;
+
+  await fsExtra.remove('./dist');
 });
 
 describe('NunjucksPlugin', () => {

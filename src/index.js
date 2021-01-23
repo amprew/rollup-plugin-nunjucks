@@ -1,7 +1,7 @@
 import nunjucks from 'nunjucks';
 
 import { resolve, isAbsolute } from 'path';
-import fs from 'fs-extra';
+import fs from 'fs';
 
 import Logger from './logger';
 
@@ -28,7 +28,7 @@ export default function NunjucksPlugin({
     });
 
     const actualPathOut = actualPath(output);
-    await fs.outputFile(actualPathOut, rendered);
+    await fs.promises.writeFile(actualPathOut, rendered);
   };
 
   return {
@@ -40,7 +40,7 @@ export default function NunjucksPlugin({
       const { file: bundlePath } = bundle;
 
       const actualPathIn = actualPath(input);
-      const templateContent = await fs.readFile(actualPathIn, 'utf-8');
+      const templateContent = await fs.promises.readFile(actualPathIn, 'utf-8');
       await handleTemplateContent(templateContent, bundlePath);
     }
   };
