@@ -11,13 +11,17 @@ jest.mock('nunjucks', () => ({
 
 process.chdir(`${__dirname}/fixtures`);
 
-async function build (pluginConfig) {
+async function build(pluginConfig) {
   const bundle = await rollup({
     input: './src/index.js',
     plugins: [NunjucksPlugin(pluginConfig)]
   });
 
-  const meta = await bundle.write({ format: 'cjs', exports: 'auto',  output: { file: './dist/index.js' } });
+  const meta = await bundle.write({
+    format: 'cjs',
+    exports: 'auto',
+    output: { file: './dist/index.js' }
+  });
   await bundle.close();
 
   const outPath = pluginConfig.output;
@@ -38,15 +42,16 @@ afterEach(async () => {
   await fs.remove('./dist');
 });
 
-
 describe('NunjucksPlugin', () => {
   describe('broken config', () => {
     test('when no input specified it throws an error', async () => {
       expect(build()).rejects.toThrowError(/no input file specified$/);
     });
-  
+
     test('when no output specified it throws an error', async () => {
-      expect(build({ input: './src/index.js' })).rejects.toThrowError(/no output file specified$/);
+      expect(build({ input: './src/index.js' })).rejects.toThrowError(
+        /no output file specified$/
+      );
     });
   });
 
@@ -63,14 +68,14 @@ describe('NunjucksPlugin', () => {
       test: 'option'
     });
   });
-  
+
   describe('nunjucks templating', () => {
     test('render basic HTML', async () => {
       const { fileContent } = await build({
         input: './templates/basic-html.njk',
         output: './dist/index.html'
       });
-  
+
       expect(fileContent).toMatchSnapshot();
     });
 
@@ -79,7 +84,7 @@ describe('NunjucksPlugin', () => {
         input: './templates/loop.njk',
         output: './dist/index.html'
       });
-  
+
       expect(fileContent).toMatchSnapshot();
       expect(fileContent).toMatch(/12345/);
     });
@@ -89,13 +94,12 @@ describe('NunjucksPlugin', () => {
         input: './templates/if-statement.njk',
         output: './dist/index.html'
       });
-  
+
       expect(fileContent).toMatchSnapshot();
       expect(fileContent).toMatch(/if statement true/);
       expect(fileContent).not.toMatch(/if statement false/);
     });
 
-    
     test('variables', async () => {
       const { fileContent } = await build({
         input: './templates/variables.njk',

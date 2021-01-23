@@ -17,14 +17,17 @@ export default function NunjucksPlugin({
   vars = {},
   opts = {}
 } = {}) {
-  if(!input) Logger.error('no input file specified');
-  if(!output) Logger.error('no output file specified');
+  if (!input) Logger.error('no input file specified');
+  if (!output) Logger.error('no output file specified');
 
   const handleTemplateContent = async (templateContent, bundlePath) => {
     nunjucks.configure(opts);
-    const rendered = nunjucks.renderString(templateContent, { ...vars, bundlePath });
-  
-    const actualPathOut = actualPath(output)
+    const rendered = nunjucks.renderString(templateContent, {
+      ...vars,
+      bundlePath
+    });
+
+    const actualPathOut = actualPath(output);
     await fs.outputFile(actualPathOut, rendered);
   };
 
@@ -37,8 +40,8 @@ export default function NunjucksPlugin({
       const { file: bundlePath } = bundle;
 
       const actualPathIn = actualPath(input);
-      const templateContent = await fs.readFile(actualPathIn, 'utf-8')
+      const templateContent = await fs.readFile(actualPathIn, 'utf-8');
       await handleTemplateContent(templateContent, bundlePath);
     }
-  }
+  };
 }

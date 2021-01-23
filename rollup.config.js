@@ -14,5 +14,5 @@ export default {
     // commonJS({ include: "node_modules/**" }),
     babel({ babelHelpers: 'bundled' })
   ],
-  external: [ 'nunjucks', 'fs-extra', 'fs', 'path' ]
+  external: ['nunjucks', 'fs-extra', 'fs', 'path']
 };

@@ -1,7 +1,5 @@
 module.exports = {
-  moduleDirectories: [
-    'node_modules', '<rootDir>/src', '<rootDir>'
-  ],
+  moduleDirectories: ['node_modules', '<rootDir>/src', '<rootDir>'],
   roots: [
     '<rootDir>/src',
     '<rootDir>/test',
@@ -13,7 +11,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: [
     '<rootDir>/test/utils',
-    '<rootDir>/test/fixtures/dist',
+    '<rootDir>/test/fixtures/dist'
   ],
   verbose: false,
   clearMocks: true
