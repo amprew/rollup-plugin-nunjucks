@@ -12,7 +12,6 @@
   "author": "me@andrewww.co.uk",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^9.1.0",
     "nunjucks": "^3.2.2",
     "rollup": "^2.38.0"
   },
@@ -25,7 +24,8 @@
     "husky": "^4.3.8",
     "jest": "^26.6.3",
     "prettier": "2.2.1",
-    "pretty-quick": "^3.1.0"
+    "pretty-quick": "^3.1.0",
+    "rimraf": "^3.0.2"
   },
   "files": [
     "dist",

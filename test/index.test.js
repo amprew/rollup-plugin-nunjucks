@@ -1,5 +1,5 @@
 import fs from 'fs';
-import fsExtra from 'fs-extra';
+import rimraf from 'rimraf';
 import nunjucks from 'nunjucks';
 import { rollup } from 'rollup';
 import NunjucksPlugin from '../src/index';
@@ -38,7 +38,7 @@ async function build(pluginConfig) {
 afterEach(async () => {
   if (!fs.existsSync('./dist')) return;
 
-  await fsExtra.remove('./dist');
+  rimraf.sync('./dist');
 });
 
 describe('NunjucksPlugin', () => {
