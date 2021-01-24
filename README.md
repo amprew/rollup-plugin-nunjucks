@@ -3,6 +3,7 @@
 [Nunjucks](https://github.com/mozilla/nunjucks#readme) is a templating library by [Mozilla](https://www.mozilla.org/). This Rollup plugin integrates these great features into an easy interface without having to set up all of your templates.
 
 ## Install
+[![npm version](https://badge.fury.io/js/%40amprew%2Frollup-plugin-nunjucks.svg)](https://badge.fury.io/js/%40amprew%2Frollup-plugin-nunjucks)
 
 ```sh
 npm install --save-dev @amprew/rollup-plugin-nunjucks
