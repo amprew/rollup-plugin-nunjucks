@@ -3,6 +3,7 @@
 [Nunjucks](https://github.com/mozilla/nunjucks#readme) is a templating library by [Mozilla](https://www.mozilla.org/). This Rollup plugin integrates these great features into an easy interface without having to set up all of your templates.
 
 ## Install
+
 [![npm version](https://badge.fury.io/js/%40amprew%2Frollup-plugin-nunjucks.svg)](https://badge.fury.io/js/%40amprew%2Frollup-plugin-nunjucks)
 
 ```sh
@@ -67,3 +68,31 @@ Type: `Object` `{[key: string]: any}`
 Default: `{}`
 
 Note: This `opts` option is to be used for configuring different arguments which get passed to Nunjuck's `configure` function https://mozilla.github.io/nunjucks/api.html#configure.
+
+### `preRenderEnvironment` (\*optional\*)
+
+type `Function`
+
+(parameter: [Nunjucks environment](https://mozilla.github.io/nunjucks/api.html#environment))
+
+Default: `undefined`
+
+Usage:
+
+```js
+{
+  input: './source.njk',
+  output: './dist.html',
+  preRenderEnvironment: (environment) => {
+    environment.addFilter('shorten', function (str, count) {
+      return str.slice(0, count || 5) + '...';
+    });
+  }
+}
+```
+
+template:
+
+```njk
+A message for you: {{ message|shorten }}
+```

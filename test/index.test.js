@@ -69,6 +69,24 @@ describe('NunjucksPlugin', () => {
   });
 
   describe('nunjucks templating', () => {
+    test('preRenderEnvironment', async () => {
+      const { fileContent } = await build({
+        input: './templates/using-shorten-filter.njk',
+        output: './dist/index.html',
+        preRenderEnvironment: (environment) => {
+          environment.addFilter('shorten', function (str, count) {
+            return str.slice(0, count || 5) + '...';
+          });
+        }
+      });
+
+      expect(fileContent).toMatchInlineSnapshot(`
+        "A message shortened to 5: 12345...
+        A message shortened to 10: 1234567890...
+        "
+      `);
+    });
+
     test('render basic HTML', async () => {
       const { fileContent } = await build({
         input: './templates/basic-html.njk',

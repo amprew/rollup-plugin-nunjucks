@@ -15,14 +15,17 @@ export default function NunjucksPlugin({
   input,
   output,
   vars = {},
-  opts = {}
+  opts = {},
+  preRenderEnvironment
 } = {}) {
   if (!input) Logger.error('no input file specified');
   if (!output) Logger.error('no output file specified');
 
   const handleTemplateContent = async (templateContent, bundlePath) => {
     nunjucks.configure(opts);
-    const rendered = nunjucks.renderString(templateContent, {
+    const environment = new nunjucks.Environment();
+    if (preRenderEnvironment) preRenderEnvironment(environment);
+    const rendered = environment.renderString(templateContent, {
       ...vars,
       bundlePath
     });
