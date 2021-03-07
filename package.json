@@ -1,6 +1,6 @@
 {
   "name": "@amprew/rollup-plugin-nunjucks",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "[Nunjucks](https://github.com/mozilla/nunjucks#readme) is a templating library by [Mozilla](https://www.mozilla.org/). This Rollup plugin integrates these great features into an easy interface without having to set up all of your templates.",
   "module": "dist/index.es.js",
   "main": "dist/index.js",
